@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="javascripts/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="javascripts/tools.js"></script>
+		<script type="text/javascript" src="javascripts/MapBounds.js"></script>
+		<script type="text/javascript" src="javascripts/map_boundaries.js"></script>
+
+		
+		<style type="text/css">			
+			#start_sel {
+				width: 150px;
+			}
+			#start_sel.selecting {
+				font-weight: bold;
+			}
+			
+			#sel {
+				/* Required for IE 5, 6, 7 */
+				/* ...or something to trigger hasLayout, like zoom: 1; */
+				width: 100%; 
+
+				/* Theoretically for IE 8 & 9 (more valid) */
+				/* ...but not required as filter works too */
+				/* should come BEFORE filter */
+				-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
+				/* This works in IE 8 & 9 too */
+				/* ... but also 5, 6, 7 */
+				filter: alpha(opacity=50);
+
+				/* Older than Firefox 0.9 */
+				-moz-opacity:0.5;
+
+				/* Safari 1.x (pre WebKit!) */
+				-khtml-opacity: 0.5;
+
+				/* Modern!
+				/* Firefox 0.9+, Safari 2?, Chrome any?
+				/* Opera 9+, IE 9+ */
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<input type="button" name="start" value="Start Selection" id="start_sel" />
+		<input type="text" name="points" value=""/>
+		<br />
+		<div id="map_canvas" style="width: 500px; height: 350px"></div>
+	</body>
+</html>
+
