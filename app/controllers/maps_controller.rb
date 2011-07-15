@@ -6,7 +6,7 @@ class MapsController < ApplicationController
 		if remote_ip != "127.0.0.1" #todo: check for other local addresses or set default value
 			location_location = @geoip.country(remote_ip)
 			if location_location != nil     
-				render :text => location_location[2]
+				render :json => location_location
 			end
 		end
 		
