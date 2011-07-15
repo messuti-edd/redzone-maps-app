@@ -2,11 +2,14 @@ class MapsController < ApplicationController
   def home
 		@geoip ||= GeoIP.new("#{Rails.root}/db/GeoIP.dat")
 		remote_ip = request.remote_ip
+		@location_pais = ""
+		@user_location = current_user.location
 		
 		if remote_ip != "127.0.0.1" #todo: check for other local addresses or set default value
 			location_location = @geoip.country(remote_ip)
-			if location_location != nil     
-				render :json => location_location
+			if location_location != nil
+				@location_pais = location_location[6]
+				#render :json => location_location
 			end
 		end
 		

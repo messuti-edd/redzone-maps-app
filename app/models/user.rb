@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
 			mail = hash['user_info']['email']
 			gender = hash['extra']['user_hash']['gender']
 			birthday = hash['extra']['user_hash']['birthday']
+			hometown = hash['extra']['user_hash']['hometown']['name']
+			location = hash['extra']['user_hash']['location']['name']
 			d = birthday.split('/')
 			birthday = d[2]+'-'+d[0]+'-'+d[1]
 			birthday_year = d[2]
@@ -35,7 +37,7 @@ class User < ActiveRecord::Base
 			username = hash['extra']['user_hash']['screen_name']
 		end
 
-		self.create(:name => name, :username => username, :email => mail )
+		self.create(:name => name, :username => username, :email => mail, :home_town => hometown, :location =>location )
 	end
 
 	def get_date_info

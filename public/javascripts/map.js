@@ -26,13 +26,19 @@ function cleanForm() {
 
 function initialize() {
 	geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(-34.0518110050727, 148.68843359375);
+	var address = $j("input[name=search_key]").val();
+	var latlng = new google.maps.LatLng(-34.0518110050727, 148.68843359375); //default
+	if (address.length > 3) {
+		latlng = codeAddress(address);
+	}
 	var myOptions = {
 		zoom: 8,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	
+	
 	
 	var new_point_pressed = false;
 	var orig_val = $j("#new_point").val();
@@ -117,6 +123,22 @@ function codeAddress() {
 			}
 		});
 	}
+}
+
+function getLatLngFromAdress(address) {
+	var latLng = null;
+	
+	if (geocoder) {
+		geocoder.geocode( {
+			'address': address
+		}, function(_results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				latLng = _results[0].geometry.location;
+			}
+		});
+	}
+	
+	return latLng;
 }
 
 $j(document).ready(function() {
