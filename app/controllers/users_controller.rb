@@ -2,6 +2,6 @@ class UsersController < ApplicationController
 	def list
 		users = User.find(:all)
 		
-		render :text => users.to_yaml
+		render :json=> users.to_json
 	end
 end
