@@ -10,7 +10,7 @@ class AuthenticationController < ApplicationController
 		#flash[:notice]= "Estas adentro!"
 		session[:omniauth] = omniauth
 
-		render :text => omniauth.to_yaml
+		#render :text => omniauth.to_yaml
 		#redirect_to questions_path
 		redirect_to 'http://apps.facebook.com/redzonemaps'
   end
