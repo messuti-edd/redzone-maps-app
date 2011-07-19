@@ -14,7 +14,7 @@ class MapsController < ApplicationController
 		end
 		
 		if !signed_in?
-			render :text => '<script>top.location="/auth/facebook";</script>'
+			#render :text => '<script>top.location="/auth/facebook";</script>'
 		end
   end
 
