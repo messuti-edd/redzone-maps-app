@@ -8,8 +8,8 @@
 
 
 MapPointTipo.create([
-		{:nombre => 'Asalto'}, 
-		{:nombre => 'Atraco'}, 
-		{:nombre => 'Asesinato'}, 
-		{:nombre => 'Foneada'}
+		{:nombre => 'Asalto', :marker_image => "pin_asalto.png"}, 
+		{:nombre => 'Atraco', :marker_image => "pin_atraco.png"}, 
+		{:nombre => 'Asesinato', :marker_image => "pin_asesinato.png"}, 
+		{:nombre => 'Foneada', :marker_image => "pin_foneada.png"}
 	])

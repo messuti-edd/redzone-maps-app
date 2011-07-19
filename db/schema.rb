@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110715135153) do
+ActiveRecord::Schema.define(:version => 20110718041519) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110715135153) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "localidad_id"
   end
 
   create_table "departamentos", :force => true do |t|
@@ -37,12 +38,15 @@ ActiveRecord::Schema.define(:version => 20110715135153) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "departamento_id"
+    t.integer  "provincia_id"
   end
 
   create_table "map_point_tipos", :force => true do |t|
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "marker_image"
   end
 
   create_table "map_points", :force => true do |t|
@@ -50,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20110715135153) do
     t.datetime "fecha"
     t.float    "lat"
     t.float    "lng"
-    t.integer  "tipo_id"
+    t.integer  "map_point_tipo_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -72,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20110715135153) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "departamento_id"
   end
 
   create_table "sessions", :force => true do |t|
@@ -96,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20110715135153) do
     t.datetime "updated_at"
     t.string   "home_town"
     t.string   "location"
+    t.string   "profile_image"
   end
 
 end

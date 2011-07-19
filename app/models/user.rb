@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 			name = hash['user_info']['name']
 			username = hash['user_info']['nickname']
 			mail = hash['user_info']['email']
+			profile_image = hash['user_info']['image']
 			gender = hash['extra']['user_hash']['gender']
 			birthday = hash['extra']['user_hash']['birthday']
 			hometown = hash['extra']['user_hash']['hometown']['name']
@@ -37,7 +38,8 @@ class User < ActiveRecord::Base
 			username = hash['extra']['user_hash']['screen_name']
 		end
 
-		self.create(:name => name, :username => username, :email => mail, :home_town => hometown, :location =>location )
+		self.create(:name => name, :username => username, :email => mail, :home_town => hometown, 
+								:location =>location, :profile_image => profile_image )
 	end
 
 	def get_date_info

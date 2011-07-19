@@ -11,6 +11,7 @@ RedZoneMaps::Application.routes.draw do
 	post "auth/:provider/callback" => "authentication#create", :via => :get
 	
 	match "smap_point/create" => "map_point#create_ajax"
+	match "smap_point/getpoints" => "map_point#get_points_ajax"
 
 	match 'auth/:provider/callback' => 'authentication#create'
 	
