@@ -9,11 +9,11 @@ RedZoneMaps::Application.routes.draw do
 	post "/" => "maps#home", :via => :get
 	
 	post "auth/:provider/callback" => "authentication#create", :via => :get
+	match 'auth/:provider/callback' => 'authentication#create'
 	
 	match "smap_point/create" => "map_point#create_ajax"
 	match "smap_point/getpoints" => "map_point#get_points_ajax"
 
-	match 'auth/:provider/callback' => 'authentication#create'
 	
 	match '/signed_request/' => 'maps#home'
 	

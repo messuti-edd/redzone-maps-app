@@ -4,6 +4,8 @@ var results;
 var new_point_marker = null;
 var map_points_markers = [];
 var map_point_tipos = [];
+var zoom_on_hometown = 13;
+var zoom_on_no_hometown = 9;
 
 var got_data = {
 	"pais": "",
@@ -15,7 +17,9 @@ var got_data = {
 	"lng": null
 };
 
+
 function initialize() {
+	
 	geocoder = new google.maps.Geocoder();
 	var address = $j("input[name=search_key]").val();
 	var latlng = new google.maps.LatLng(-34.0518110050727, 148.68843359375); //default
@@ -23,7 +27,7 @@ function initialize() {
 		latlng = codeAddress(address);
 	}
 	var myOptions = {
-		zoom: 8,
+		zoom: address.length > 3 ? zoom_on_hometown : zoom_on_no_hometown,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
@@ -57,7 +61,7 @@ function initialize() {
 				new_point_marker.setMap(null);
 				new_point_marker = null;
 			}
-			$j('#reportDialog').dialog("close");
+			showNuevoPuntoForm(false);
 			
 			google.maps.event.removeListener(geocoder_listener);
 		}
@@ -110,7 +114,7 @@ function onMapClick(e) {
 		});
 		got_data.lat = e.latLng.lat();
 		got_data.lng = e.latLng.lng();
-		$j('#reportDialog').dialog("open");
+		showNuevoPuntoForm(true);
 	}
 }
 
@@ -138,14 +142,16 @@ function getDataFromLocation(results) {
 		}
 	}
 
-	$j("input[name=pais]").val(got_data.pais);
-	$j("input[name=dep]").val(got_data.dep);
-	$j("input[name=prov]").val(got_data.prov);
-	$j("input[name=localidad]").val(got_data.localidad);
+//	$j("input[name=pais]").val(got_data.pais);
+//	$j("input[name=dep]").val(got_data.dep);
+//	$j("input[name=prov]").val(got_data.prov);
+//	$j("input[name=localidad]").val(got_data.localidad);
 }
 
 function codeAddress() {
 	var address = $j("input[name=search_key]").val();
+	
+	if (address <= 3) return;
 	
 	if (geocoder) {
 		geocoder.geocode( {
@@ -153,7 +159,7 @@ function codeAddress() {
 		}, function(_results, status) {
 			results = _results;
 			if (status == google.maps.GeocoderStatus.OK) {
-				map.setZoom(13);
+				map.setZoom(zoom_on_hometown);
 				map.setCenter(_results[0].geometry.location);
 			} else {
 				alert("Geocode was not successful for the following reason: " + status);
@@ -238,17 +244,26 @@ function scalePoints(scale) {
 	}
 }
 
+function showNuevoPuntoForm(show) {
+	if (show) {
+		$j("#new_point_form").show();
+	}
+	else {
+		$j("#new_point_form").hide();
+	}
+}
+
 $j(document).ready(function() {
 	initialize();
 	
-	$j('#reportDialog').dialog({
-		autoOpen: false,
-		width: 450,
-		height: 430,
-		modal: false,
-		open: null,
-		close: null
-	});
+//	$j('#reportDialog').dialog({
+//		autoOpen: false,
+//		width: 450,
+//		height: 430,
+//		modal: false,
+//		open: null,
+//		close: null
+//	});
 	
 	$j("input[name=search]").click(function() {
 		codeAddress();
@@ -288,7 +303,7 @@ $j(document).ready(function() {
 		}, function(data) {
 			if (!data['error']) {
 				cleanForm();
-				$j('#reportDialog').dialog("close");
+				showNuevoPuntoForm(false);
 				alert("Exito!");
 			}
 		});

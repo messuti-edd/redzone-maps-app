@@ -1,76 +1,52 @@
-<h3>Maps</h3>
-<p id="notice"><%= notice %></p>
+<div id="container">
 
-<input type="text" name="search_key" value="<%=  @user_location %>" />
-<input type="button" name="search" value="Go" />
-<br />
-<br />
+	<p id="notice"><%= notice %></p>
 
-<div id="map_canvas" class="map_tu_pin" style="width: 500px; height: 400px"></div>
+	<div id="top_search_bar">
+		<div style="float:left;">
+			<input type="text" name="search_key" value="<%=  @user_location %>" />
+			<input type="button" name="search" value="Go" />
+		</div>
 
-<br />
-<input type="button" value="Reportar delito" id="new_point" />
-<br />
+		<input type="button" value="Reportar delito" id="new_point" />
+		
+		<div style="clear: both"></div>
+	</div>
 
-<% if signed_in? %>
-	<a href="/logout">Logout</a>
-<% else %>
-	<a href="/auth/facebook">Facebook Login</a>
-<%  end %>
 
-<div id="reportDialog" title="Reporta un Delito" style="display: none">
-	<fieldset>
-		<dl>
-			<dt>Pais:
-			<dd><input type="text" name="pais" value="" disabled />
-		</dl>
-		
-		<dl>
-			<dt>Departamento:
-			<dd><input type="text" name="dep" value="" disabled />
-		</dl>
-		
-		<dl>
-			<dt>Provincia:
-			<dd><input type="text" name="prov" value="" disabled />
-		</dl>
-		
-		<dl>
-			<dt>Localidad:
-			<dd><input type="text" name="localidad" value="" disabled />
-		</dl>
-		
-		<dl>
-			<dt>Barrio:
-			<dd><input type="text" name="barrio" value="" />
-		</dl>
-		
-		<dl>
-			<dt>Tipo:
-			<dd><select name="tipo">
-					<option value="-1">---</option>
-					<%= options_from_collection_for_select(MapPointTipo.all(), :id, :nombre) %>
-				</select>
-		</dl>
-		
-		<dl>
-			<dt>Descripci&oacute;n:
-			<dd><textarea name="descr"></textarea>
-		</dl>
-		
-		<dl>
-			<dt>Fecha:
-			<dd><input type="text" name="fecha" value="" />
-		</dl>
-		
-		<dl>
-			<dt>&nbsp;
-			<dd><input type="button" name="send_point" value="Aceptar" />
-		</dl>
-	</fieldset>
+	<div id="new_point_form" style="display: none">
+		<div class="ftitle">Tipo de Delito:</div>
+		<div class="fdata">
+			<select name="tipo">
+				<option value="-1">---</option>
+				<%= options_from_collection_for_select(MapPointTipo.all(), :id, :nombre) %>
+			</select>
+		</div>
+
+		<div class="ftitle">Fecha:</div>
+		<div class="fdata big"><input type="text" name="fecha" value="" /></div>
+
+		<div style="clear: both"></div>
+
+		<div class="ftitle">Barrio:</div>
+		<div class="fdata">
+			<input type="text" name="barrio" value="" />
+		</div>
+
+		<div class="ftitle">Descripci&oacute;n:</div>
+		<div class="fdata big"><textarea name="descr" style="width: 360px"></textarea></div>
+
+	</div>
+	<div id="map_canvas" class="map_tu_pin" style="width: 760px; height: 400px"></div>
+
+
+	<% if signed_in? %>
+		<a href="/logout">Logout</a>
+	<% else %>
+		<a href="/auth/facebook">Facebook Login</a>
+	<%  end %>
+
 </div>
-
-
 
 <script type="text/javascript">
 	var tmp = $;

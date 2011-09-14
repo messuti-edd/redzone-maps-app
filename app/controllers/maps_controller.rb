@@ -9,12 +9,12 @@ class MapsController < ApplicationController
 			location_location = @geoip.country(remote_ip)
 			if location_location != nil
 				@location_pais = location_location[6]
-				render :json => "he?" # not online
+				#render :json => "he?" # not online
 			end
 		end
 		
 		if !signed_in?
-			#render :text => '<script>top.location="/auth/facebook";</script>'
+			render :text => '<script>top.location="/auth/facebook";</script>'
 		end
   end
 

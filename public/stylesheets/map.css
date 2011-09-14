@@ -1,3 +1,7 @@
+#container {
+	width: 760px;
+}
+
 dl {
 	margin-bottom: 7px;
 }
@@ -19,4 +23,34 @@ dl dd input[type=text] {
 dl dd textarea {
 	width: 200px;
 	height: 50px;
+}
+
+/*		Nuevo punto form		*/
+
+#new_point_form .ftitle {
+	float: left;
+	width: 100px;
+	margin-bottom: 10px;
+}
+
+#new_point_form .fdata {
+	float: left;
+	width: 200px;
+	margin-bottom: 10px;
+}
+
+#new_point_form .fdata.big {
+	float: left;
+	width: 360px;
+	margin-bottom: 10px;
+}
+
+/*			Top Bar				*/
+
+#top_search_bar {
+	margin-bottom: 20px;
+}
+
+#new_point {
+	float: right;
 }

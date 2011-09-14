@@ -10,7 +10,7 @@ gem 'rails', '3.0.4'
 gem "postgres-pr"
 gem 'geoip'
 gem 'omniauth', '0.2.6'
-gem "rake", "0.8.7"
+gem "rake"
 #gem "rake"
 gem "pg"
 
