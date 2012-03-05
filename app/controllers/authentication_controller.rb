@@ -12,7 +12,8 @@ class AuthenticationController < ApplicationController
 
 		#render :text => omniauth.to_yaml
 		#redirect_to questions_path
-		redirect_to 'http://apps.facebook.com/redzonemaps'
+		# redirect_to 'http://apps.facebook.com/redzonemaps'
+		redirect_to 'http://redzone.heroku.com/'
   end
 
 	def logout
