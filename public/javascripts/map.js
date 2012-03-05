@@ -247,9 +247,11 @@ function scalePoints(scale) {
 function showNuevoPuntoForm(show) {
 	if (show) {
 		$j("#new_point_form").show();
+		$j("input[name=send_point]").show();
 	}
 	else {
 		$j("#new_point_form").hide();
+		$j("input[name=send_point]").hide();
 	}
 }
 
